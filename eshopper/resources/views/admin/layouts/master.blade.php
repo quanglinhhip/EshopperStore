@@ -47,17 +47,7 @@
 
             <div class="page-content">
                 <div class="container-fluid">
-
-                    <div class="row">
-                        <div class="col">
-
-                            <div class="h-100">
-                                @yield('content')
-                            </div> <!-- end .h-100-->
-
-                        </div> <!-- end col -->
-                    </div>
-
+                    @yield('content')
                 </div>
                 <!-- container-fluid -->
             </div>

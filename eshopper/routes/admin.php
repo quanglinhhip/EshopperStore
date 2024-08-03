@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CatalogueController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
@@ -9,6 +10,9 @@ Route::prefix('admin')
 
         Route::get('/', function () {
             return view('admin.dashboard');
+        })->name('dashboard');
+        Route::get('font', function () {
+            return view('admin.font');
         });
 
         Route::prefix('catalogues')
@@ -22,4 +26,5 @@ Route::prefix('admin')
                 Route::put('{id}/update}',      [CatalogueController::class, 'update'])->name('update');
                 Route::get('{id}/destroy',      [CatalogueController::class, 'destroy'])->name('destroy');;
             });
+        Route::resource('products', ProductController::class);
     });
