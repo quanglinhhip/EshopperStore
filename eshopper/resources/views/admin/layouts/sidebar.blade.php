@@ -1,3 +1,8 @@
+<style>
+    .nav-link::before {
+        content: none !important;
+    }
+</style>
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
     <div class="navbar-brand-box">

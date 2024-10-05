@@ -44,13 +44,19 @@
                                 <th>ID</th>
                                 <th>Img Thumbnail</th>
                                 <th>Name</th>
+                                <th>SKU</th>
                                 <th>Catalogue</th>
                                 <th>Price Regular</th>
                                 <th>Price Sale</th>
+                                <th>Views</th>
                                 <th>Is Active</th>
+                                <th>Is Hot Deal </th>
+                                <th>Is Good Deal</th>
+                                <th>Is New </th>
+                                <th>Is Show Home</th>
+                                <th>Tag</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
-                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -75,18 +81,32 @@
                                         <img src="{{ $url }}" alt="" width="100px">
                                     </td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->catalogue->name }}</td>
+                                    <td>{{ $item->sku }}</td>
+                                    <td>{{ $item->catalogue?->name }}</td>
                                     <td>{{ $item->price_regular }}</td>
-                                    <td>{{ $item->price_sale }}</td>
+                                    <td>{{ $item->sale }}</td>
+                                    <td>{{ $item->views }} </td>
                                     <td>{!! $item->is_active ? '<span class="badge bg-primary">Yes</span>' : '<span class="badge bg-danger">No</span>' !!}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->updated_at }}</td>
-                                    <td>{{ $item->description }}</td>
+                                    <td>{!! $item->is_hot_deal ? '<span class="badge bg-primary">Yes</span>' : '<span class="badge bg-danger">No</span>' !!}</td>
+                                    <td>{!! $item->is_good_deal
+                                        ? '<span class="badge bg-primary">Yes</span>'
+                                        : '<span class="badge bg-danger">No</span>' !!}</td>
+                                    <td>{!! $item->is_new ? '<span class="badge bg-primary">Yes</span>' : '<span class="badge bg-danger">No</span>' !!}</td>
+                                    <td>{!! $item->is_show_home
+                                        ? '<span class="badge bg-primary">Yes</span>'
+                                        : '<span class="badge bg-danger">No</span>' !!}</td>
 
                                     <td>
-                                        <a href="{{ route('admin.products.show', $item->id) }}"
+                                        @foreach ($item->tags as $tag)
+                                            <span class="badge bg-info">{{ $tag->name }}</span>
+                                        @endforeach
+                                    </td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->updated_at }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.catalogues.show', $item->id) }}"
                                             class="btn btn-info mb-3">Show</a>
-                                        <a href="{{ route('admin.products.edit', $item->id) }}"
+                                        <a href="{{ route('admin.catalogues.edit', $item->id) }}"
                                             class="btn btn-warning mb-3">Edit</a>
 
                                         <form action="{{ route('admin.products.destroy', $item) }}" method="POST">

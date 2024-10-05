@@ -85,7 +85,7 @@
     </div>
 
     <!-- Theme Settings -->
-    @include('admin.layouts.theme')
+    {{-- @include('admin.layouts.theme') --}}
 
     <script>
         const PATH_ROOT = '{{ asset('theme/admin') }}'

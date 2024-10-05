@@ -8,31 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'catalogue_id',
         'name',
-        'slug',
-        'sku',
         'img_thumbnail',
         'price_regular',
-        'sale',
+        'price_sale',
         'description',
-        'content',
-        'material',
-        'user_manual',
-        'views',
         'is_active',
-        'is_hot_deal',
-        'is_good_deal',
-        'is_new',
-        'is_show_home',
     ];
 
     protected $casts = [
-        'is_active' => 'boolean',
-        'is_hot_deal' => 'boolean',
-        'is_good_deal' => 'boolean',
-        'is_new' => 'boolean',
-        'is_show_home' => 'boolean',
+        'is_active' => 'boolean'
+        //lay input dau vao -> auto convert true/fasle-> 0/1-> save vao db
+        // lay ra ->auto convert 0/1->true/false
     ];
+    public function catalogue()
+    {
+        return $this->belongsTo(Catalogue::class);
+    }
 }
